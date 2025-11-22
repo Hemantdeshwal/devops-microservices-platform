@@ -1,0 +1,37 @@
+name: Build and Push Docker Images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'services/**'
+      - '.github/workflows/docker-build-push.yml'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v3
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push Service A image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./services/service-a
+        tags: hemantdeshwal19/service-a:latest
+        push: true
+
+    - name: Build and push Service B image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./services/service-b
+        tags: hemantdeshwal19/service-b:latest
+        push: true
+
