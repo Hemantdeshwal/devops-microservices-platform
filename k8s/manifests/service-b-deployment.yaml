@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: service-b
-        image: hemantdeshwal19/service-a:latest
+        image: hemantdeshwal19/service-b:latest
         ports:
         - containerPort: 5000
         imagePullPolicy: IfNotPresent
