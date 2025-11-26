@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: service-b
-        image: hemantdeshwal19/service-b:v3
+        image: hemantdeshwal19/service-b:latest
         ports:
         - containerPort: 5000
         imagePullPolicy: Always
